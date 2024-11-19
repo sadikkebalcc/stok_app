@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class supplierController extends Controller
+class suplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('Suplier.suplier');
     }
 
     /**
@@ -19,7 +19,7 @@ class supplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('Suplier.addSuplier');
     }
 
     /**

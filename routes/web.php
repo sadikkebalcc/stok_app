@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\pegawaiController;
-use App\Http\Controllers\supplierController;
+use App\Http\Controllers\suplierController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,9 +37,9 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
         Route::post('/pegawai/edit/{id}', 'update');
 
         Route::get('/pegawai/{id}', 'destroy');
-
-
     });
+
+
     /**
      * ini route stok
      */
@@ -59,11 +59,16 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
      * ini route pelanggan
      */
 
+
     /**
      * ini route supplier
      */
-    Route::controller(supplierController::class)->group(function(){
-        Route::get('/supplier', 'index');
+    Route::controller(suplierController::class)->group(function(){
+        Route::get('/suplier', 'index');
+        
+        Route::get('/suplier/add', 'create');
     });
+
+    
 });
 
