@@ -85,7 +85,10 @@
                                             <i class="bi bi-pencil"></i>
                                         </a>
                                         
-                                        <a href="" class="btn btn-danger btn-sm" tittle="Delete">
+                                        <a href="{{('/suplier') }}/{{$item->id}}" 
+                                            class="btn btn-danger btn-sm" 
+                                            tittle="Delete"
+                                            onclick="return confirm('Hapus data {{$item->nama_suplier}} ??');">
                                             <i class="bi bi-trash"></i>
                                         </a>    
                                     <td>
