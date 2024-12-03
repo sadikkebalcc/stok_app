@@ -81,6 +81,10 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
         
         Route::get('/pelanggan/add', 'create');
         Route::post('/pelanggan/add', 'store');
+    
+        Route::get('/pelanggan/edit/{id}', 'edit');
+        Route::post('/pelanggan/edit/{id}', 'update');
+        
     });
     
 });
