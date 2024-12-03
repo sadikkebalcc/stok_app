@@ -119,6 +119,12 @@ class pelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = pelanggan::find($id);
+        $data->delete();
+
+        return redirect()->back()->with(
+            'message', 
+            'Data Berhasil dihapus'
+        );
     }
 }

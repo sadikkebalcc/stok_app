@@ -87,13 +87,13 @@
                                         <td class="text-center">{{ $item->kota }} </td>
                                         <td class="text-center">{{ $item->provinsi }} </td>
                                         <td class="text-center">
-                                            <a href="{{ url('/pelanggan/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
+                                            <a href="{{ url('/pelanggan/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm" title="edit">
+                                                <i class="bi bi-pencil"></i>
                                             </a>
                                             
-                                            <a href="{{ url('/pelanggan', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" 
+                                            <a href="{{ url('/pelanggan/delete')}}/{{$item->id}}" class="btn btn-danger btn-sm" title="hapus" 
                                                onclick="return confirm('Hapus Data ???');">
-                                                <i class="bi bi-trash"></i> Delete
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>   
