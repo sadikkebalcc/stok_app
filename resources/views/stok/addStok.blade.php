@@ -108,7 +108,7 @@ Stok
                                 <label class="form-label" for="cabang">Cabang</label>
                                 <div class="input-group">
                                     <span class="input-group-text text-light bg-primary"><i class="bi bi-map"></i></span>
-                                    <input readonly type="text" value="Palembang" name="cabang" id="cabang" class="form-control @error('cabang') is-invalid @enderror"/>
+                                    <input type="text" value="" name="cabang" id="cabang" class="form-control @error('cabang') is-invalid @enderror"/>
                                     @error('cabang')
                                         <div class="invalid-feedback">
                                             {{ $message }}
