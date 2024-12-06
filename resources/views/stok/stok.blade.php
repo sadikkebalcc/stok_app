@@ -86,7 +86,7 @@
                                             </p>
                                         </td>
                                         <td width="450px">{{ $item->nama_barang }} </td>
-                                        <td>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }} </td>
+                                        <td>{{ 'Rp' . number_format($item->harga, 0, ',', '.') }} </td>
                                         <td class="text-center">{{ $item->stok }} </td>
                                         <td>{{ $item->getSuplier->nama_suplier }} </td>
                                         <td class="text-center">{{ $item->cabang }} </td>

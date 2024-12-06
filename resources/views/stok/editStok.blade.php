@@ -88,12 +88,12 @@ Stok
                                             <span class="input-group-text text-light bg-primary"><i class="bi bi-person-bounding-box"></i></span>
                                             <select name="suplier" class="form-control @error('suplier') is-invalid @enderror" id="suplier">
                                                 <option value="">--Pilih Suplier--</option>
-                                                {{-- @foreach ($suplier as $item)
+                                                @foreach ($suplier as $item)
                                                     <option value="{{ $item->id }}" 
                                                         {{ (old('suplier') ? old('suplier') : $getDataStokId->getSuplier->id) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_suplier }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             @error('suplier')
                                                 <div class="invalid-feedback">
@@ -109,7 +109,7 @@ Stok
                                 <label class="form-label" for="cabang">Cabang</label>
                                 <div class="input-group">
                                     <span class="input-group-text text-light bg-primary"><i class="bi bi-map"></i></span>
-                                    <input readonly type="text" value="Palembang" name="cabang" id="cabang" class="form-control @error('cabang') is-invalid @enderror" style="background-color: #BFBFBF" />
+                                    <input readonly type="text" value="{{$getDataStokId->cabang}}" name="cabang" id="cabang" class="form-control @error('cabang') is-invalid @enderror" style="background-color: #BFBFBF" />
                                     @error('cabang')
                                         <div class="invalid-feedback">
                                             {{ $message }}
