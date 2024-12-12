@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\barangMasuk;
+use App\Models\stok;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class barangMasukController extends Controller
 {
@@ -19,7 +22,10 @@ class barangMasukController extends Controller
      */
     public function create()
     {
-        return view('Barang.barangMasuk.addbarangMasuk');
+        $getnama_barang_id = stok::with('getSuplier')->get();
+        return view('Barang.barangMasuk.addbarangMasuk', compact(
+            'getnama_barang_id'
+        ));
     }
 
     /**
@@ -27,7 +33,42 @@ class barangMasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_barang_id' => 'required',
+            //'harga' => 'required',
+            'jumlah' => 'required',
+            'tanggal_faktur' => 'required',
+        ]);
+        
+        $updateStok = stok::find($request->nama_barang_id);
+        if ($request->filled('harga')) {
+            $harga_beli = $request->harga;
+        }else {
+            $harga_beli = $updateStok->harga;
+        
+        }
+    
+        $savebarangMasuk = new barangMasuk();
+        $savebarangMasuk->tanggal_faktur = $request->tanggal_faktur;
+        $savebarangMasuk->nama_barang_id = $request->nama_barang_id;
+        $savebarangMasuk->suplier_id = $updateStok->suplier_id;
+        $savebarangMasuk->harga_beli = $harga_beli;
+        $savebarangMasuk->jumlah_barang_masuk = $request-> jumlah;
+        $savebarangMasuk->admin_id = Auth::user()->id;
+        //dd($savebarangMasuk);
+        $savebarangMasuk->save();
+    
+        $hitung = $updateStok->stok + $request->jumlah;
+    $updateStok->stok = $hitung;
+    // dd($savebarangMasuk);
+    $updateStok->save();
+    
+    
+    return redirect('/barang-masuk')->with(
+        'message',
+        'data Barang' . $updateStok->nama_barang . ' berhasil ditambahkan'
+    );
+    
     }
 
     /**
