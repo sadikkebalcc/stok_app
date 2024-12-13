@@ -73,12 +73,14 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
 
         Route::get('/barang-masuk/add', 'create');
         Route::post('/barang-masuk/add', 'store');
+
+        Route::get('/barang-masuk/{id}', 'destroy');
     });
 
     /**
      * ini route barang keluar
      */
-
+    
 
     /**
      * ini route pelanggan

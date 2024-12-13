@@ -12,9 +12,23 @@ class barangMasukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Barang.barangMasuk.barangMasuk');
+        $query = barangMasuk::with(
+            'getStok',
+            'getSuplier',
+            'getAdmin' ,   
+        );
+        if ($request->filled('tanggal_awal') && $request->filled('tanggal_akhir')) {
+            $query->whereBetween('tanggal_faktur', [$request->tanggal_awal, $request->tanggal_akhir,]);
+        }
+        
+        $query->orderBy('created_at', 'desc'); //ascending / descending
+        $getData = $query->paginate(5);
+
+        return view('Barang.barangMasuk.barangMasuk', compact(
+            'getData',
+        ));
     }
 
     /**
@@ -100,6 +114,24 @@ class barangMasukController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $barangMasuk = barangMasuk::find($id);
+            $get_id_Stok = $barangMasuk->nama_barang_id;
+            $get_jumlah_barang_masuk = $barangMasuk->jumlah_barang_masuk;
+        
+       $getItemBarang = stok::find($get_id_Stok);
+            $getStok = $getItemBarang->stok;
+
+            $updateDataStok = $getStok - $get_jumlah_barang_masuk;
+        
+           $getItemBarang->stok = $updateDataStok;
+        $getItemBarang->save();
+
+    $barangMasuk->delete();
+
+    return redirect()->back()->with(
+        'message',
+        'Data barang masuk ' . $getItemBarang->nama_barang . ' berhasil dihapus'
+    );
+
     }
 }
