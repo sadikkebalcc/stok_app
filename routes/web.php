@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\barangKeluarController;
 use App\Http\Controllers\barangMasukContoller;
 use App\Http\Controllers\barangMasukController;
 use App\Http\Controllers\dashboardController;
@@ -80,8 +81,15 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
     /**
      * ini route barang keluar
      */
+    Route::controller(barangKeluarController::class)->group(function(){
+        
+        Route::get('/barang-keluar', 'index');
+        
+        Route::get('/barang-keluar/add', 'create');
+        Route::post('/barang-keluar/add', 'store');
     
-
+        
+    });
     /**
      * ini route pelanggan
      */
